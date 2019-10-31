@@ -1,25 +1,50 @@
 # JAM_Garage 
+
+* [Discord](https://discord.gg/rBzBN4E)
+
 * Based off https://github.com/DanFrmSpace/esx_eden_garage
 
-JAM_Garage gives your players a location to store their vehicles, along with an impound for whatever reason you might need that for.
-If the player leaves their vehicle unattended (log off or move out of render distance), the vehicle will automatically be placed back in the garage.
-
-If you havn't already, you need to follow the guide at https://docs.fivem.net/server-manual/setting-up-a-server/ to setup a CitizenFX server. Once you've done that, you will need to follow the installation instructions found in each of the requirements below (and install and of their dependancies) before you use this mod.
+JAM_Garage gives your players a location to store their vehicles, along with an impound for whatever reason you might need that for. If the player leaves their vehicle unattended (log off or move out of render distance), the vehicle will automatically be placed back in the garage (unless it is the vehicle currently in-use). Damaged vehicle storage price and impound retrieval price can be set in the config.
 
 ### Requirements
 * [EssentialMode](https://github.com/kanersps/essentialmode/releases)
 * [EssentialMode Extended](https://github.com/ESX-Org/es_extended)
-* [esx_vehicleshop](https://github.com/ESX-Org/esx_vehicleshop) (*For now...*)
+* [esx_vehicleshop](https://github.com/ESX-Org/esx_vehicleshop)
+* [JAM-Base](https://github.com/JustAnotherModder/JAM)
 
 ## Download & Installation
 
 ### Manually
-- Download https://github.com/bh-hub/blanchisseur/archive/master.zip
-- Put it in the `resources` directory inside of your server folder.
-
-## Installation
-- Add this in your server.cfg :
+- Download https://github.com/JustAnotherModder/JAM_Garage/archive/master.zip
+- Extract the JAM_Garage folder (and its contents) into your `JAM` folder, inside of your `resources` directory.
+- Open `__resource.lua` in your `JAM` folder.
+- Add the files to their respective locations, like so :
 
 ```
-start JAM_Garage
+client_scripts {
+	'JAM_Main.lua',
+	'JAM_Client.lua',
+	'JAM_Utilities.lua',
+
+	-- Garage
+	'JAM_Garage/JAM_Garage_Config.lua',
+	'JAM_Garage/JAM_Garage_Client.lua',
+}
+
+server_scripts {	
+	'JAM_Main.lua',
+	'JAM_Server.lua',
+	'JAM_Utilities.lua',
+
+	-- MySQL
+	'@mysql-async/lib/MySQL.lua',
+
+	-- Garage
+	'JAM_Garage/JAM_Garage_Config.lua',
+	'JAM_Garage/JAM_Garage_Server.lua',
+}
 ```
+
+### Notes
+- Any and all improvements must be send back to the author (me), here on github.
+
